@@ -3,6 +3,8 @@ from _Framework.ControlSurface import ControlSurface
 from AbletonMixer import AbletonMixer
 from AbletonTransport import AbletonTransport
 
+from Consts import *
+
 import Live
 
 class AbletonScripts(ControlSurface):
@@ -18,3 +20,7 @@ class AbletonScripts(ControlSurface):
 		self._transport = AbletonTransport()
 		self._mixer = AbletonMixer()
 		self._set_suppress_rebuild_requests(False)
+
+	def handle_sysex(self,sysex):
+		if(sysex[1] == MIXER_SYSEX):
+			self._mixer.handle_sysex(sysex[1:])

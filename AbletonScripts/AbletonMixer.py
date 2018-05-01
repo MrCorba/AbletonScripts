@@ -32,8 +32,18 @@ class AbletonMixer(MixerComponent):
 			else:
 				strip.set_track(None)
 				strip.set_volume_control(None)
+				self._sliders[count].send_value(0,True)
 			track_index += 1
 			count += 1
+
+	def handle_sysex(self, sysex):
+		if(sysex[1] == BANK_UP):
+			self._strip_offset += NUM_TRACKS
+			self.__validate_strip_offset()
+		elif(sysex[1] == BANK_DOWN):
+			self._strip_offset -= NUM_TRACKS
+			self.__validate_strip_offset()
+		self._reassign_strips()
 
 	def __validate_strip_offset(self):
 		all_tracks = (self.song().tracks + self.song().return_tracks)
