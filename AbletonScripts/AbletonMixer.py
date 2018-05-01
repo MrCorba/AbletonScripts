@@ -17,8 +17,15 @@ class AbletonMixer(MixerComponent):
 		self.song().add_tracks_listener(self.__on_tracks_added_or_deleted)
 		self._reassign_strips()
 
+	def _send_init(self):
+		for track in self._strips:
+			track._send_init()
+
 	def _reassign_strips(self):
 		track_index = self._strip_offset
+		for track in self._assigned_tracks:
+			if(track and track.name_has_listener(self._on_track_name_changed)):
+				track.remove_name_listener(self._on_track_name_changed)
 		self._assigned_tracks = []
 		all_tracks = (self.song().tracks + self.song().return_tracks)
 		count = 0
@@ -28,6 +35,7 @@ class AbletonMixer(MixerComponent):
 				track = all_tracks[track_index]
 				strip.set_track(track)
 				strip.set_volume_control(self._sliders[count])
+				track.add_name_listener(self._on_track_name_changed)
 				self._assigned_tracks.append(track)
 			else:
 				strip.set_track(None)
@@ -35,6 +43,10 @@ class AbletonMixer(MixerComponent):
 				self._sliders[count].send_value(0,True)
 			track_index += 1
 			count += 1
+		self._send_init()
+
+	def _on_track_name_changed(self):
+		self._reassign_strips()
 
 	def handle_sysex(self, sysex):
 		if(sysex[1] == BANK_UP):
