@@ -5,6 +5,7 @@ from _Framework.SliderElement import SliderElement
 
 from AbletonChannelStrip import AbletonChannelStrip
 from Consts import *
+from Util import toggle_cc_button
 
 class AbletonMixer(MixerComponent):
 
@@ -12,6 +13,7 @@ class AbletonMixer(MixerComponent):
 		MixerComponent.__init__(self, NUM_TRACKS)
 		self._strips = [ AbletonChannelStrip(i) for i in range(NUM_TRACKS) ]
 		self._sliders = [SliderElement(CC_TYPE, MIDI_CHANNEL, (FADER_START + i)) for i in range(NUM_TRACKS) ]
+		self._buttons = [toggle_cc_button(BUTTON_START + i) for i in range(NUM_TRACKS * 2) ]
 		self._strip_offset = 0
 		self._assigned_tracks = []
 		self.song().add_tracks_listener(self.__on_tracks_added_or_deleted)
@@ -33,14 +35,19 @@ class AbletonMixer(MixerComponent):
 			btc = count * 2
 			if(track_index < len(all_tracks)):
 				track = all_tracks[track_index]
+				strip.set_invert_mute_feedback(True)
 				strip.set_track(track)
 				strip.set_volume_control(self._sliders[count])
+				strip.set_mute_button(self._buttons[btc])
+				strip.set_solo_button(self._buttons[btc + 1])
 				track.add_name_listener(self._on_track_name_changed)
 				self._assigned_tracks.append(track)
 			else:
 				strip.set_track(None)
 				strip.set_volume_control(None)
 				self._sliders[count].send_value(0,True)
+				strip.set_solo_button(None)
+				strip.set_mute_button(None)
 			track_index += 1
 			count += 1
 		self._send_init()
