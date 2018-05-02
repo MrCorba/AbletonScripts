@@ -19,7 +19,7 @@ class AbletonMixer(MixerComponent):
 
 	def _send_init(self):
 		for track in self._strips:
-			track._send_init()
+			track.send_init()
 
 	def _reassign_strips(self):
 		track_index = self._strip_offset

@@ -9,7 +9,7 @@ class AbletonTransport(TransportComponent):
         TransportComponent.__init__(self)
         self.setup_controls()
 
-    def setup_controls(self):
+    def _setup_controls(self):
         self.set_play_button(momentary_cc_button(PLAY_BUTTON))
         self.set_stop_button(momentary_cc_button(STOP_BUTTON))
         self.set_record_button(momentary_cc_button(REC_BUTTON))
@@ -20,14 +20,14 @@ class AbletonTransport(TransportComponent):
         self.setup_punch_buttons()
         self.setup_nudge_buttons()
 
-    def setup_seek_buttons(self):
+    def _setup_seek_buttons(self):
         self.set_seek_forward_button(momentary_cc_button(FFWD_BUTTON))
         self.set_seek_backward_button(momentary_cc_button(RWD_BUTTON))
 
-    def setup_punch_buttons(self):
+    def _setup_punch_buttons(self):
         self.set_punch_in_button(momentary_cc_button(PUNCH_IN))
         self.set_punch_out_button(momentary_cc_button(PUNCH_OUT))
 
-    def setup_nudge_buttons(self):
+    def _setup_nudge_buttons(self):
         self.set_nudge_up_button(momentary_cc_button(NUDGE_UP))
         self.set_nudge_down_button(momentary_cc_button(NUDGE_DOWN))

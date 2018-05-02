@@ -8,7 +8,7 @@ class AbletonChannelStrip(ChannelStripComponent):
 		ChannelStripComponent.__init__(self)
 		self._track_id = id
 
-	def _send_init(self):
+	def send_init(self):
 		self._send_state()
 
 	def _send_state(self):
