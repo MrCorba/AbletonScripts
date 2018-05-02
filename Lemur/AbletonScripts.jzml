@@ -94,8 +94,7 @@
 <VARIABLE name="light=0" send="0" osc_target="0" osc_trigger="1" osc_message="/CustomButton12/light" midi_target="-1" midi_trigger="1" midi_message="0x90,0x90,0,0" midi_scale="0,16383" kbmouse_target="-1" kbmouse_trigger="1" kbmouse_message="0,0,0" kbmouse_scale="0,1,0,1"/>
 </WINDOW>
 </WINDOW>
-<SCRIPT name="sysex(MIDI_ARGS)" script="setattribute(Test, 'content', MIDI_ARGS);
-if(MIDI_ARGS[0] == 0){
+<SCRIPT name="sysex(MIDI_ARGS)" script="if(MIDI_ARGS[0] == 0){
 	if (MIDI_ARGS[1] == 2 ){
 		decl track = MIDI_ARGS[2];
 		decl name = {''};
