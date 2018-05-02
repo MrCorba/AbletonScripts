@@ -7,7 +7,7 @@ class AbletonTransport(TransportComponent):
 
     def __init__(self):
         TransportComponent.__init__(self)
-        self.setup_controls()
+        self._setup_controls()
 
     def _setup_controls(self):
         self.set_play_button(momentary_cc_button(PLAY_BUTTON))
@@ -16,9 +16,9 @@ class AbletonTransport(TransportComponent):
         self.set_loop_button(momentary_cc_button(LOOP_BUTTON))
         self.set_metronome_button(toggle_cc_button(METRONOME))
         self.set_tap_tempo_button(toggle_cc_button(TAP_TEMPO))
-        self.setup_seek_buttons()
-        self.setup_punch_buttons()
-        self.setup_nudge_buttons()
+        self._setup_seek_buttons()
+        self._setup_punch_buttons()
+        self._setup_nudge_buttons()
 
     def _setup_seek_buttons(self):
         self.set_seek_forward_button(momentary_cc_button(FFWD_BUTTON))
