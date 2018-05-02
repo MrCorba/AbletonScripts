@@ -12,11 +12,11 @@ class AbletonScripts(ControlSurface):
 	def __init__(self, c_instance):
 		ControlSurface.__init__(self, c_instance)
 		with self.component_guard():
-			self.setup()
+			self._setup()
 
 		self.show_message("AbletonScripts Connected")
 
-	def setup(self):
+	def _setup(self):
 		self._set_suppress_rebuild_requests(True)
 		Sysex.set_midi_callback(self._send_midi)
 		Sysex.set_log(self.log_message)
