@@ -17,7 +17,7 @@ Pull requests, issue reports, and suggestions are welcome.
 If you are interested in contributing to the code, please fork the
 repository and submit pull requests to the `master` branch.
 
-Check `TODO.md` to see jobs left to do.
+Check the [TODO](TODO.md) to see jobs left to do.
 
 ## Install
 
