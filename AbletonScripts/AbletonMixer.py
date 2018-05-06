@@ -72,3 +72,9 @@ class AbletonMixer(MixerComponent):
 	def __on_tracks_added_or_deleted(self):
 		self.__validate_strip_offset()
 		self._reassign_strips()
+
+	def disconnect(self):
+		MixerComponent.disconnect(self)
+		for track in self._assigned_tracks:
+			if (track and track.name_has_listener(self._on_track_name_changed)):
+				track.remove_name_listener(self._on_track_name_changed)

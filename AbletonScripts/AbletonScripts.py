@@ -31,3 +31,8 @@ class AbletonScripts(ControlSurface):
 	def _do_send_midi(self, midi_event_bytes):
 		self._c_instance.send_midi(midi_event_bytes)
 		return True
+
+	def disconnect(self):
+		ControlSurface.disconnect(self)
+		Sysex.release_attributes()
+		self._mixer.disconnect(self._mixer)
