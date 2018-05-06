@@ -4,6 +4,7 @@ from AbletonMixer import AbletonMixer
 from AbletonTransport import AbletonTransport
 
 from Consts import *
+from Modules import *
 from Sysex import Sysex
 
 import Live
@@ -20,8 +21,10 @@ class AbletonScripts(ControlSurface):
 		self._set_suppress_rebuild_requests(True)
 		Sysex.set_midi_callback(self._send_midi)
 		Sysex.set_log(self.log_message)
-		self._transport = AbletonTransport()
-		self._mixer = AbletonMixer()
+		if (TRANSPORT_ENABLED):
+				self._transport = AbletonTransport()
+		if (MIXER_ENABLED):
+			self._mixer = AbletonMixer()
 		self._set_suppress_rebuild_requests(False)
 
 	def handle_sysex(self,sysex):
