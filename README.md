@@ -19,16 +19,22 @@ repository and submit pull requests to the `master` branch.
 
 Check the [TODO](TODO.md) to see jobs left to do.
 
-## Install
+## Usage
 
-**Mac**
+Move the `AbletonScripts folder` to the `MIDI Remote Scripts folder`.
 
-For Mac move the `AbletonScripts` folder to the `MIDI Remote Scripts` folder, located in:
+***Mac***
 
-`/Applications/Ableton\ Live\ 9\ Suite.app/Contents/App-Resources/MIDI\ Remote\ Scripts/`
+This folder can be found on MAC inside the Live application:
 
-**Windows**
+`/Applications/Ableton\ Live\ x\ Suite.app/Contents/App-Resources/MIDI\ Remote\ Scripts/`
 
-For Windows move the `AbletonScripts` folder to the `MIDI Remote Scripts` folder, located in:
+Reach this by right clicking on the app and click `Show package contents`
+
+***Windows***
+
+This folder can be found on Windows inside the Live application:
 
 `\ProgramData\Ableton\Live x.x\Resources\MIDI Remote Scripts`
+
+When Live start, it will compile the `.py` files and create a bunch of `.pyc` files. When you change something in one of the `.py` files, you need to remove the `.pyc`. This way Ableton will recompile the files on next start.
